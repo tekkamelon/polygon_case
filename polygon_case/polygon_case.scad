@@ -1,30 +1,29 @@
-a = 60;//height and radius1
-b = 40;//radius2
-c = 5;//thikness
+a = 45;//height
+b = 55;//radius1
+c = 40;//radius2
+d = 5;//thikness
+e = 10;//top_height
+f = 30;//top_radius2
 $fn = 8;//nunber of polygon
 
-//teal
-module under(){
-	color("teal")
-	difference(){
-		cylinder(h = a, r1 = a, r2 = b);
-		translate([0,0,c])
-			cylinder(h = a-c, r1 = a-c, r2 = b-c);
-	}
+module target(){
+    union(){
+        cylinder(h = a,r1 = b, r2 = c);
+        translate([0,0,a])
+            cylinder(h = e, r1 = c, r2 = f);
+    }
 }
-
-//white
-module top(){
-	difference(){
-		translate([0,0,a])
-			cylinder(h = 5, r1 = b, r2 = b-10);
-		translate([0,0,a])
-			cylinder(h = 5, r1 = b-c, r2 = b-10+c);
-	}
+    
+module tool(){
+    union(){
+        translate([0,0,d])
+            cylinder(h = a-d, r1 = b-d, r2 = c-d);
+        translate([0,0,a])
+            cylinder(h = e, r1 =c-d, r2 = f-d);
+    }
 }
-
-union(){
-	under();
-	top();
+        
+difference(){
+    target();
+    tool();
 }
-
