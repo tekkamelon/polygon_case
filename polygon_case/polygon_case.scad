@@ -15,12 +15,8 @@ module target(){
 }
     
 module tool(){
-    union(){
-        translate([0,0,d])
-            cylinder(h = a-d, r1 = b-d, r2 = c-d);
-        translate([0,0,a])
-            cylinder(h = e, r1 =c-d, r2 = f-d);
-    }
+    translate([0,0,d])
+		cylinder(h = 55, r1 = f-d, r2 = f-d);
 }
         
 difference(){
